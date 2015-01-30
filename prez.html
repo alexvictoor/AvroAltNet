@@ -56,14 +56,6 @@
 				</section>
 
 				<section style="text-align: left;">
-					<h2>Un fichier avro c'est :</h2>
-					<p>
-						- Une entête<br>
-						- Des enregistrements
-					</p>
-				</section>
-
-				<section style="text-align: left;">
 					<h2>Un fichier avro :</h2>
 					<p>
 						- Une entête<br>
@@ -107,7 +99,67 @@
 					</pre>
 				</section>
 
-				
+				<section>
+					<h1>Ecrire un seul object</h1>
+					<pre>
+						<code data-trim>
+var serializer = AvroSerializer.Create&lt;Deal&gt;();
+serializer.Serialize(stream, deal);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Ecrire tout plein d'objects</h1>
+					<pre>
+						<code data-trim>
+using (var stream = new FileStream(path, OpenOrCreate, Write))
+{
+
+
+
+
+
+
+
+}
+						</code>
+					</pre>
+				</section>
+<section data-transition="fade">
+					<h1>Ecrire tout plein d'objects</h1>
+					<pre>
+						<code data-trim>
+using (var stream = new FileStream(path, OpenOrCreate, Write))
+{
+  using (var cw = AvroContainer.CreateWriter&lt;Deal&gt;(stream, Codec.Deflate))
+  {
+
+
+
+
+  }
+}
+						</code>
+					</pre>
+				</section>
+<section data-transition="fade">
+					<h1>Ecrire tout plein d'objects</h1>
+					<pre>
+						<code data-trim>
+using (var stream = new FileStream(path, OpenOrCreate, Write))
+{
+  using (var cw = AvroContainer.CreateWriter&lt;Deal&gt;(stream, Codec.Deflate))
+  {
+    using (var w = new SequentialWriter&lt;Deal&gt;(cw, 100))
+    {
+      deals.ForEach(w.Write);
+    }
+  }
+}
+						</code>
+					</pre>
+				</section>				
 				<section style="text-align: left;">
 					<h1>THE END</h1>
 					<p>

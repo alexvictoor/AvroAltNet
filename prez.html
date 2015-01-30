@@ -47,6 +47,7 @@
 				<section data-background-transition="fade" data-background="#00abec">
 					
 					<img src="microsoft.png"  />
+					<p style="background-color: black">Install-Package Microsoft.Hadoop.Avro</p>
 				</section>
 
 				<section data-background-transition="zoom" data-background="white">
@@ -54,12 +55,56 @@
 					<img src="largefile.jpg" />
 				</section>
 
-				<section>
+				<section style="text-align: left;">
 					<h2>Un fichier avro c'est :</h2>
 					<p>
 						- Une entête<br>
 						- Des enregistrements
 					</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2>Un fichier avro :</h2>
+					<p>
+						- Une entête<br>
+						- Des enregistrements
+					</p>
+				</section>
+
+				<section>
+					<pre>
+						<code data-trim>
+							{"namespace": "example.avro",
+ "type": "record",
+ "name": "User",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "favorite_number",  "type": ["int", "null"]},
+     {"name": "favorite_color", "type": ["string", "null"]}
+ ]
+}
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Schema -> Code</h1>
+					<pre>
+						<code data-trim>
+							>Microsoft todo cli
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Code -> Schema</h1>
+					<pre>
+						<code data-trim>
+							class Deal {
+							
+						}
+						</code>
+					</pre>
 				</section>
 
 				

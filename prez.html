@@ -40,7 +40,7 @@
 					<p><img src="avro-logo.png" /></p>
 				</section>
 
-				<section data-background-transition="zoom" data-background="white">
+				<section data-background-transition="fade" data-background="white">
 					
 					<img src="hadoop-elephant.png" />
 				</section>
@@ -50,7 +50,7 @@
 					<p style="background-color: black">Install-Package Microsoft.Hadoop.Avro</p>
 				</section>
 
-				<section data-background-transition="zoom" data-background="white">
+				<section data-background-transition="fade" data-background="white">
 					
 					<img src="largefile.jpg" />
 				</section>
@@ -100,17 +100,26 @@
 				</section>
 
 				<section>
-					<h1>Ecrire un seul object</h1>
+					<h1>Avec un seul object</h1>
 					<pre>
 						<code data-trim>
 var serializer = AvroSerializer.Create&lt;Deal&gt;();
+						</code>
+					</pre>
+					<pre class="fragment">
+						<code data-trim>
 serializer.Serialize(stream, deal);
+						</code>
+					</pre>
+					<pre class="fragment">
+						<code data-trim>
+var deal = serializer.Deserialize(stream);
 						</code>
 					</pre>
 				</section>
 
-				<section>
-					<h1>Ecrire tout plein d'objects</h1>
+				<section data-transition="fade">
+					<h1>Ecrire en masse</h1>
 					<pre>
 						<code data-trim>
 using (var stream = new FileStream(path, OpenOrCreate, Write))
@@ -127,7 +136,7 @@ using (var stream = new FileStream(path, OpenOrCreate, Write))
 					</pre>
 				</section>
 <section data-transition="fade">
-					<h1>Ecrire tout plein d'objects</h1>
+					<h1>Ecrire en masse</h1>
 					<pre>
 						<code data-trim>
 using (var stream = new FileStream(path, OpenOrCreate, Write))
@@ -144,7 +153,7 @@ using (var stream = new FileStream(path, OpenOrCreate, Write))
 					</pre>
 				</section>
 <section data-transition="fade">
-					<h1>Ecrire tout plein d'objects</h1>
+					<h1>Ecrire en masse</h1>
 					<pre>
 						<code data-trim>
 using (var stream = new FileStream(path, OpenOrCreate, Write))
@@ -159,7 +168,113 @@ using (var stream = new FileStream(path, OpenOrCreate, Write))
 }
 						</code>
 					</pre>
-				</section>				
+				</section>	
+
+				<section data-transition="fade">
+					<h1>Et pour lire ?</h1>
+					<pre class="fragment">
+						<code data-trim>
+using (var reader = AvroContainer.CreateGenericReader(stream))
+{
+
+
+
+
+
+
+
+
+}
+</code>
+					</pre>
+				</section>	
+
+				<section data-transition="fade">
+					<h1>Et pour lire ?</h1>
+					<pre>
+						<code data-trim>
+using (var reader = AvroContainer.CreateGenericReader(stream))
+{
+  using (var streamReader = new SequentialReader&lt;dynamic&gt;(reader))
+  {
+
+
+
+
+
+  }
+}
+</code>
+					</pre>
+				</section>	
+
+				<section data-transition="fade">
+					<h1>Et pour lire ?</h1>
+					<pre>
+						<code data-trim>
+using (var reader = AvroContainer.CreateGenericReader(stream))
+{
+  using (var streamReader = new SequentialReader&lt;dynamic&gt;(reader))
+  {
+    IEnumerable&lt;dynamic&gt; deals = streamReader.Objects;    
+    foreach (var deal in deals)
+    {
+      // ...
+    }
+  }
+}
+</code>
+					</pre>
+				</section>	
+
+<section>
+	
+	<h1>C'est bien mais...</h1>
+
+</section>
+
+<section>
+					<pre>
+						<code data-trim>
+							{"namespace": "example.avro",
+ "type": "record",
+ "name": "User",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "favorite_number",  "type": ["int", "null"]},
+     {"name": "favorite_color", "type": ["string", "null"]}
+ ]
+}
+						</code>
+					</pre>
+				</section>
+
+<section>
+	<h1>La killer feature</h1>
+					<pre>
+						<code data-trim>
+// la resolution de schema
+AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
+	</code>
+</pre>
+
+</section>
+<section style="text-align: left;">
+	<h2>Compatibilité entre schemas</h2>
+	<p>
+		- TODO <br>
+		- TODO
+	</p>
+</section>
+<section>
+	<h1>D'autres usages</h1>
+	<p>
+		- Echange de messages entre applications<br>
+		- Event sourcing
+	</p>
+</section>
+
+
 				<section style="text-align: left;">
 					<h1>THE END</h1>
 					<p>

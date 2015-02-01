@@ -62,23 +62,60 @@
 						- Des enregistrements
 					</p>
 				</section>
-
+<section>
 				<section>
 					<pre>
 						<code data-trim>
-							{"namespace": "example.avro",
- "type": "record",
- "name": "User",
- "fields": [
-     {"name": "name", "type": "string"},
-     {"name": "favorite_number",  "type": ["int", "null"]},
-     {"name": "favorite_color", "type": ["string", "null"]}
- ]
+							{
+    "type":"record",
+    "namespace": "Alt.Net.Example",
+    "name":"Deal",
+    "fields":
+        [
+            { "name":"ClientId", "type":"int" },
+            { "name":"Nominal", "type":"double" },
+            { "name":"Date", "type":"string" }
+        ]
 }
 						</code>
 					</pre>
 				</section>
 
+<section>
+					<pre>
+						<code data-trim>
+{
+    "type":"record",
+    "namespace": "Alt.Net.Example",
+    "name":"Deal",
+    "fields":
+        [
+            { "name":"ClientId", "type":"int" },
+            { "name":"Nominal", "type":"double" },
+            { "name":"Date", "type":"string" },                                        
+            {
+                "name":"product",    
+                "type":
+                    ["null", {
+                        "type":"record",
+                        "namespace": "Alt.Net.Example",
+                        "name":"Product",
+                        "fields":
+                            [
+                                { "name":"underlying", "type":"string" },
+                                { "name":"currency", "type": {
+                                    "name":"Currency", "type":"enum", "symbols": ["USD", "EUR", "GBP"] } 
+                                },                                        
+                                { "name":"maturity", "type":"string" }
+                            ]
+                    }]
+            }            
+        ]
+}
+						</code>
+					</pre>
+				</section>
+</section>
 				<section>
 					<h1>Schema -> Code</h1>
 					<pre>
@@ -92,10 +129,19 @@
 					<h1>Code -> Schema</h1>
 					<pre>
 						<code data-trim>
-							class Deal {
-							
-						}
-						</code>
+[DataContract(Name = "Deal", Namespace = "Alt.Net.Example")]
+internal class DealData
+{
+    [DataMember(Name = "ClientId")]
+    public int Client { get; set; }
+
+    [DataMember(Name = "Nominal")]
+    public double Nominal { get; set; }
+
+    [DataMember(Name = "Date")]
+    public string Date { get; set; }
+}						
+    </code>
 					</pre>
 				</section>
 
@@ -230,20 +276,40 @@ using (var reader = AvroContainer.CreateGenericReader(stream))
 <section>
 	
 	<h1>C'est bien mais...</h1>
+	<img src="cartoobig.jpg" class="fragment"/>
 
 </section>
 
 <section>
 					<pre>
 						<code data-trim>
-							{"namespace": "example.avro",
- "type": "record",
- "name": "User",
- "fields": [
-     {"name": "name", "type": "string"},
-     {"name": "favorite_number",  "type": ["int", "null"]},
-     {"name": "favorite_color", "type": ["string", "null"]}
- ]
+{
+    "type":"record",
+    "namespace": "Alt.Net.Example",
+    "name":"Deal",
+    "fields":
+        [
+            { "name":"ClientId", "type":"int" },
+            { "name":"Nominal", "type":"double" },
+            { "name":"Date", "type":"string" },                                        
+            {
+                "name":"product",    
+                "type":
+                    ["null", {
+                        "type":"record",
+                        "namespace": "Alt.Net.Example",
+                        "name":"Product",
+                        "fields":
+                            [
+                                { "name":"underlying", "type":"string" },
+                                { "name":"currency", "type": {
+                                    "name":"Currency", "type":"enum", "symbols": ["USD", "EUR", "GBP"] } 
+                                },                                        
+                                { "name":"maturity", "type":"string" }
+                            ]
+                    }]
+            }            
+        ]
 }
 						</code>
 					</pre>
@@ -253,7 +319,7 @@ using (var reader = AvroContainer.CreateGenericReader(stream))
 	<h1>La killer feature</h1>
 					<pre>
 						<code data-trim>
-// la resolution de schema
+// la résolution de schema
 AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 	</code>
 </pre>
@@ -266,7 +332,7 @@ AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 		- TODO
 	</p>
 </section>
-<section>
+<section style="text-align: left;">
 	<h1>D'autres usages</h1>
 	<p>
 		- Echange de messages entre applications<br>
@@ -275,13 +341,6 @@ AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 </section>
 
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
-				</section>
 
 			</div>
 

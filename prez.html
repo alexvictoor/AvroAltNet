@@ -7,12 +7,14 @@
 
 		<title>avro alt net</title>
 
+		<link rel="stylesheet" href = "css/bootstrap.css">
 	
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -98,8 +100,9 @@
                 "type":
                     ["null", {
                         "type":"record",
-                        "namespace": "Alt.Net.Example",
+                        "namespace":"Alt.Net.Example",
                         "name":"Product",
+                        "default":null,
                         "fields":
                             [
                                 { "name":"underlying", "type":"string" },
@@ -143,6 +146,12 @@ internal class DealData
 }						
     </code>
 					</pre>
+<section>
+	
+todo c# _> bin
+
+</section>
+
 				</section>
 
 				<section>
@@ -299,6 +308,7 @@ using (var reader = AvroContainer.CreateGenericReader(stream))
                         "type":"record",
                         "namespace": "Alt.Net.Example",
                         "name":"Product",
+						"default":null,
                         "fields":
                             [
                                 { "name":"underlying", "type":"string" },
@@ -323,6 +333,16 @@ using (var reader = AvroContainer.CreateGenericReader(stream))
 AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 	</code>
 </pre>
+<div class='span6 fragment' style="text-align: left;">
+  Writer Schema<br>
+  <strong>AVANT</strong> sérialisation
+
+</div>
+<div class='span6 fragment' style="text-align: right;">
+  Reader Schema<br>  
+  <strong>APRES</strong> désérialisation
+
+</div>
 
 </section>
 <section style="text-align: left;">

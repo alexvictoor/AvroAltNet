@@ -57,12 +57,9 @@
 					<img src="largefile.jpg" />
 				</section>
 
-				<section style="text-align: left;">
-					<h2>Un fichier avro :</h2>
-					<p>
-						- Une entête<br>
-						- Des enregistrements
-					</p>
+				<section>
+					<h1>Un fichier avro</h1>
+					<img src="avrofile.png" style="border: 0px" />
 				</section>
 <section>
 				<section>
@@ -146,11 +143,7 @@ internal class DealData
 }						
     </code>
 					</pre>
-<section>
-	
-todo c# _> bin
 
-</section>
 
 				</section>
 
@@ -171,6 +164,11 @@ serializer.Serialize(stream, deal);
 var deal = serializer.Deserialize(stream);
 						</code>
 					</pre>
+				</section>
+
+				<section data-transition="fade">
+					<h1>Ecrire en masse</h1>
+					<img src="dcbin.png" style="border: 0px" />
 				</section>
 
 				<section data-transition="fade">
@@ -224,6 +222,11 @@ using (var stream = new FileStream(path, OpenOrCreate, Write))
 						</code>
 					</pre>
 				</section>	
+
+				<section data-transition="fade">
+					<h1>Et pour lire ?</h1>
+					<img src="bindyn.png" style="border: 0px" />	
+				</section>
 
 				<section data-transition="fade">
 					<h1>Et pour lire ?</h1>

@@ -339,7 +339,7 @@ using (var reader = AvroContainer.CreateGenericReader(stream))
 					</pre>
 				</section>
 
-<section>
+<section data-transition="fade">
 	<h1>La killer feature</h1>
 					<pre>
 						<code data-trim>
@@ -347,31 +347,45 @@ using (var reader = AvroContainer.CreateGenericReader(stream))
 AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 	</code>
 </pre>
-<div class='span6 fragment' style="text-align: left;">
+<div class='fragment' style="text-align: left;">
   Writer Schema<br>
-  <strong>AVANT</strong> sérialisation<br/>
-  Obligatoire<br/>
-  Une seule possibilité<br/> 
+  Le schéma qui a été utilisé pour sérialiser
+   
+   
 </div>
-<div class='span6 fragment' style="text-align: right;">
+</section>
+<section data-transition="fade">
+<h1>La killer feature</h1>
+					<pre>
+						<code data-trim>
+// la résolution de schema
+AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
+	</code>
+</pre>
+
+<div style="text-align: right;">
   Reader Schema<br>  
-  <strong>APRES</strong> désérialisation<br/>
-  Facultatif<br/>
-  Plusieurs possibilités<br/>
+  Les données dont vous avez besoin
+  
 </div>
 
-</section>
+</section>	
 <section style="text-align: left;">
-	<h2>Compatibilité entre schemas</h2>
+	<h2>Entre 2 schemas, on peut</h2>
 	<p>
-		- TODO <br>
-		- TODO
+		- ajouter un champ<br/>
+		- supprimer un champ<br/>
+		- renomer un champ (avec un alias)<br/>
+		
 	</p>
+	<p class="fragment">On ne peut pas changer le type d'un champ</p>
 </section>
 <section style="text-align: left;">
 	<h1>D'autres usages</h1>
 	<p>
-		- Echange de messages entre applications<br>
+		- Echanges entre applications
+	</p>
+	<p class="fragment">
 		- Event sourcing
 	</p>
 </section>
@@ -387,7 +401,18 @@ AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 </section>
 
 <section>
+	<section>
 	<h1>Questions ?</h1>
+	</section>
+	<section>
+		<h1>Ressources</h1>
+		<p style="text-align: left;">
+		Ces slides: <br/><a>https://github.com/alexvictoor/AvroAltNet</a> <br/>
+		Le tuto MS: <br/><a>http://bit.ly/1uYRX3I</a><br/>
+		Le SDK MS Hadoop:<br/><a>http://hadoopsdk.codeplex.com/SourceControl/latest</a><br/>
+		La spec avro: <br/><a>http://avro.apache.org/docs/1.7.7/spec.html</a><br/> 
+	</p>
+	</section>
 
 </section>
 

@@ -129,7 +129,7 @@
 				</section>
 </section>
 				<section>
-					<h1>Schema -> Code</h1>
+					<img src="schemadt.png" style="border: 0px" />
 					<pre>
 						<code data-trim>
 							>Microsoft.Hadoop.Avro.Tools codegen /i:Deal.avsc /o:.
@@ -138,7 +138,6 @@
 				</section>
 
 				<section>
-					<h1>Code -> Schema</h1>
 					<pre>
 						<code data-trim>
 [DataContract(Name = "Deal", Namespace = "Alt.Net.Example")]
@@ -350,13 +349,15 @@ AvroSerializer.CreateGenericDeserializerOnly(writerSchema, readerSchema)
 </pre>
 <div class='span6 fragment' style="text-align: left;">
   Writer Schema<br>
-  <strong>AVANT</strong> sérialisation
-
+  <strong>AVANT</strong> sérialisation<br/>
+  Obligatoire<br/>
+  Une seule possibilité<br/> 
 </div>
 <div class='span6 fragment' style="text-align: right;">
   Reader Schema<br>  
-  <strong>APRES</strong> désérialisation
-
+  <strong>APRES</strong> désérialisation<br/>
+  Facultatif<br/>
+  Plusieurs possibilités<br/>
 </div>
 
 </section>
